@@ -1,6 +1,6 @@
 # Homework
 
-## Instructions 
+## Instructions
 
 Clone this repo and make a PR with your answers to the questions below, and tag your reviewer in the PR.
 
@@ -22,7 +22,7 @@ CREATE TABLE stations
 
 1) Write a query that fills out this table. Try your best to pick the correct station name for each ID. You may have to make some manual choices or editing based on the inconsistencies we've found. Do try to pick the correct name for each station ID based on how popular it is in the trip data.
 
-Hint: your query will look something like 
+Hint: your query will look something like
 
 ``` sql
 INSERT INTO stations (SELECT ... FROM tripe);
@@ -40,7 +40,11 @@ You may have noticed that we have the dates as strings. This is because the data
 
 Note that the `original_filename` column is broken down into quarters, knowing this is helpful here!
 
-1) What's the inconsistency in date formats? You can assume that each quarter's trips are numbered sequentially, starting with the first day of the first month of that quarter.
+There's an inconsistency in the dates in the string columns. For example trip `4461217` has a `start_time_str` of `11/25/2018 15:47` which implies that it's Month / Day / Year, since there's no 25th month, while trip `928659` has a `start_time_str` of `22/04/2017 0:04` which implies Day / Month / Year, since there's not 22nd month!
+
+We can assume that each `original_filename` has dates in the same format.
+
+1) What's the inconsistency in date formats? Which files are which?
 
 2) Take a look at Postgres's [date functions](https://www.postgresql.org/docs/12/functions-datetime.html), and fill in the missing date data using proper timestamps. You may have to write several queries to do this.
 
